@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Core.Context;
 using Core.Models.EntityModels;
 using System.IO;
+using FileInfo = Core.Models.EntityModels.FileInfo;
 
 namespace Web.Controllers
 {
@@ -44,7 +45,7 @@ namespace Web.Controllers
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
             ViewBag.SubCategoryId = new SelectList(db.SubCategories, "SubCategoryId", "SubCategoryName");
             var listofdrive = DriveInfo.GetDrives().Where(x => x.IsReady && x.DriveType.ToString() == "Fixed").Select(x => new { VolumeLabel = !string.IsNullOrEmpty(x.VolumeLabel) ? x.VolumeLabel : x.Name, x.Name }).ToList();
-            ViewBag.DriveLetters = new SelectList(listofdrive, "Name", "VolumeLabel");
+            ViewBag.DriveLetter = new SelectList(listofdrive, "Name", "VolumeLabel");
             return View();
         }
 
@@ -56,6 +57,7 @@ namespace Web.Controllers
         public ActionResult Create([Bind(Include = "UploadId,DriveLetter,Title,CategoryId,SubCategoryId")] Upload upload, ICollection<HttpPostedFileBase> selectedFiles, HttpPostedFileBase thumbnail)
         {
             if (selectedFiles.Count == 0) ModelState.AddModelError("SelectedFiles","You must have to select file to upload");
+
             if (ModelState.IsValid)
             {
                 upload.UploadPath = upload.Category.CategoryName + "/" + upload.SubCategory.SubCategoryName + "/";
@@ -68,7 +70,7 @@ namespace Web.Controllers
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", upload.CategoryId);
             ViewBag.SubCategoryId = new SelectList(db.SubCategories, "SubCategoryId", "SubCategoryName", upload.SubCategoryId);
             var listofdrive = DriveInfo.GetDrives().Where(x => x.IsReady && x.DriveType.ToString() == "Fixed").Select(x => new { VolumeLabel = !string.IsNullOrEmpty(x.VolumeLabel) ? x.VolumeLabel : x.Name, x.Name }).ToList();
-            ViewBag.DriveLetters = new SelectList(listofdrive, "Name", "VolumeLabel");
+            ViewBag.DriveLetter = new SelectList(listofdrive, "Name", "VolumeLabel", upload.DriveLetter);
             return View(upload);
         }
 

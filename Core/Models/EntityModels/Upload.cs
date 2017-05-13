@@ -41,6 +41,7 @@ namespace Core.Models.EntityModels
         [Required]
         [Column(TypeName = "varchar")]
         public string UploadPath { get; set; }
+
         public ICollection<FileInfo> FileInfos { get; set; }
 
         public byte?[] Thumbnail { get; set; }
