@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Core.Models.EntityModels.Category>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.PageTitle = "Category";
+    ViewBag.SmallText = "Home";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-responsive table-bordered table-hover">
+    <tr class="success">
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CategoryId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,103 @@
+﻿@model Core.Models.EntityModels.Upload
+@{
+    ViewBag.Title = "Upload";
+    ViewBag.PageTitle = "Upload Files";
+    ViewBag.SmallText = "Upload";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">@ViewBag.PageTitle</h3>
+            </div>
+            <div class="box-body">
+                @using (Html.BeginForm("Create","Uploads",FormMethod.Post,new {@enctype="multipart/form-data"}))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DriveLetter, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-6">
+                                @Html.DropDownList("DriveLetters", null, "Select One", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DriveLetter, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-6">
+                                @Html.DropDownList("CategoryId", null, "Select One", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SubCategoryId, "SubCategory", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-6">
+                                <select name="SubCategoryId" id="SubCategoryId" class="form-control">
+                                    <option>Select One</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.SubCategoryId, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Thumbnail, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-6">
+                                <input type="file" name="Thumbnail" id="Thumbnail" class="form-control"/>
+                                @Html.ValidationMessageFor(model => model.Thumbnail, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="SelectedFiles" class="control-label col-md-4">Select Files</label>
+                            <div class="col-md-6">
+                                <input type="file" name="SelectedFiles" id="SelectedFiles" class="form-control" required multiple/>
+                                @Html.ValidationMessage("SelectedFiles", "", new {@class="text-danger"})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-6">
+                                <input type="submit" value="Upload" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+            <!-- /.box-footer-->
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $("#CategoryId").change(function() {
+            var categoryId = $(this).val();
+            $("#SubCategoryId").empty().html('<option>Select One</option>');
+            $.getJSON('@Url.Action("GetSubCateoriesByCategoryId", "SubCategories")', { categoryId: categoryId }, function (response) {
+                $.each(response, function (key, value) {
+                    $('<option/>').val(value.SubCategoryId).html(value.SubCategoryName).appendTo($("#SubCategoryId"));
+                });
+            });
+        });
+    </script>
+}
