@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201705120455121_ModifiedUploadModel.Designer.cs">
       <DependentUpon>201705120455121_ModifiedUploadModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705171058523_UpdloadModelChanged.cs" />
+    <Compile Include="Migrations\201705171058523_UpdloadModelChanged.Designer.cs">
+      <DependentUpon>201705171058523_UpdloadModelChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EntityModels\Category.cs" />
     <Compile Include="Models\EntityModels\FileInfo.cs" />
@@ -88,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705120455121_ModifiedUploadModel.resx">
       <DependentUpon>201705120455121_ModifiedUploadModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705171058523_UpdloadModelChanged.resx">
+      <DependentUpon>201705171058523_UpdloadModelChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

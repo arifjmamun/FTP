@@ -26,3 +26,18 @@ H:\Projects\MVC5\FTP\Core\obj\Debug\Core.Migrations.ModifiedUploadModel.resource
 H:\Projects\MVC5\FTP\Core\obj\Debug\Core.csproj.GenerateResource.Cache
 H:\Projects\MVC5\FTP\Core\obj\Debug\Core.dll
 H:\Projects\MVC5\FTP\Core\obj\Debug\Core.pdb
+E:\Test Peroject\FTP\Core\bin\Debug\Core.dll.config
+E:\Test Peroject\FTP\Core\bin\Debug\Core.dll
+E:\Test Peroject\FTP\Core\bin\Debug\Core.pdb
+E:\Test Peroject\FTP\Core\bin\Debug\EntityFramework.dll
+E:\Test Peroject\FTP\Core\bin\Debug\EntityFramework.SqlServer.dll
+E:\Test Peroject\FTP\Core\bin\Debug\EntityFramework.xml
+E:\Test Peroject\FTP\Core\bin\Debug\EntityFramework.SqlServer.xml
+E:\Test Peroject\FTP\Core\obj\Debug\Core.csprojResolveAssemblyReference.cache
+E:\Test Peroject\FTP\Core\obj\Debug\Core.Migrations.Init.resources
+E:\Test Peroject\FTP\Core\obj\Debug\Core.Migrations.AddedUploadAndFileInfoModel.resources
+E:\Test Peroject\FTP\Core\obj\Debug\Core.Migrations.ModifiedUploadModel.resources
+E:\Test Peroject\FTP\Core\obj\Debug\Core.csproj.GenerateResource.Cache
+E:\Test Peroject\FTP\Core\obj\Debug\Core.dll
+E:\Test Peroject\FTP\Core\obj\Debug\Core.pdb
+E:\Test Peroject\FTP\Core\obj\Debug\Core.Migrations.UpdloadModelChanged.resources

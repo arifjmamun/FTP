@@ -1,9 +1,13 @@
-﻿@model Core.Models.EntityModels.Upload
+﻿@using Core.Models.EntityModels
+@model Core.Models.EntityModels.Upload
 @{
     ViewBag.Title = "Upload";
     ViewBag.PageTitle = "Upload Files";
     ViewBag.SmallText = "Upload";
     Layout = "~/Views/Shared/_AdminPanel.cshtml";
+    var driveLetter = ViewBag.DriveLetter as IEnumerable<SelectListItem>;
+    var categoryId = ViewBag.CategoryId as IEnumerable<SelectListItem>;
+    var subCategory = new SelectList(new List<SubCategory>(), "SubCategoryId", "SubCategoryName");
 }
 
 <div class="row">
@@ -23,8 +27,8 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.DriveLetter, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-6">
-                                @Html.DropDownList("DriveLetter", null, "Select One", htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.DriveLetter, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(m => m.DriveLetter, driveLetter, "Select One", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DriveLetter, "", new {@class = "text-danger"})
                             </div>
                         </div>
 
@@ -37,19 +41,17 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-4" })
+                            @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-6">
-                                @Html.DropDownList("CategoryId", null, "Select One", htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(m => m.CategoryId, categoryId, "Select One", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CategoryId, "", new {@class = "text-danger"})
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.SubCategoryId, "SubCategory", htmlAttributes: new { @class = "control-label col-md-4" })
+                            @Html.LabelFor(model => model.SubCategoryId, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-6">
-                                <select name="SubCategoryId" id="SubCategoryId" class="form-control">
-                                    <option>Select One</option>
-                                </select>
+                                @Html.DropDownListFor(m => m.SubCategoryId, subCategory, "Select One", htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.SubCategoryId, "", new {@class = "text-danger"})
                             </div>
                         </div>

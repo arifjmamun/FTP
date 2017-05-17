@@ -43,7 +43,7 @@ namespace Web.Controllers
         public ActionResult Create()
         {
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
-            ViewBag.SubCategoryId = new SelectList(db.SubCategories, "SubCategoryId", "SubCategoryName");
+            //ViewBag.SubCategoryId = new SelectList(db.SubCategories, "SubCategoryId", "SubCategoryName");
             var listofdrive = DriveInfo.GetDrives().Where(x => x.IsReady && x.DriveType.ToString() == "Fixed").Select(x => new { VolumeLabel = !string.IsNullOrEmpty(x.VolumeLabel) ? x.VolumeLabel : x.Name, x.Name }).ToList();
             ViewBag.DriveLetter = new SelectList(listofdrive, "Name", "VolumeLabel");
             return View();
@@ -68,7 +68,7 @@ namespace Web.Controllers
             }
 
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", upload.CategoryId);
-            ViewBag.SubCategoryId = new SelectList(db.SubCategories, "SubCategoryId", "SubCategoryName", upload.SubCategoryId);
+            //ViewBag.SubCategoryId = new SelectList(db.SubCategories, "SubCategoryId", "SubCategoryName", upload.SubCategoryId);
             var listofdrive = DriveInfo.GetDrives().Where(x => x.IsReady && x.DriveType.ToString() == "Fixed").Select(x => new { VolumeLabel = !string.IsNullOrEmpty(x.VolumeLabel) ? x.VolumeLabel : x.Name, x.Name }).ToList();
             ViewBag.DriveLetter = new SelectList(listofdrive, "Name", "VolumeLabel", upload.DriveLetter);
             return View(upload);

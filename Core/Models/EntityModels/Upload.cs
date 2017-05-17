@@ -16,7 +16,7 @@ namespace Core.Models.EntityModels
         [Required]
         [Column(TypeName = "varchar")]
         [Display(Name = "Drive")]
-        [StringLength(5, MinimumLength = 2)]
+        [StringLength(5)]
         public string DriveLetter { get; set; }
 
         [Required]
